@@ -1,0 +1,49 @@
+#logo_img {
+	width: 225px;
+}
+
+body {
+	background-color: #cccccc;
+}
+
+#login_box {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid;
+    margin-top: 35%;
+}
+
+#ueberschrift_login_box {
+	color: #D61B1B;
+	border-bottom: 3px solid #D61B1B;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#login_button {
+	background-color: #397CA3;
+}
+
+#image {
+	text-align: center;
+}
+
+footer {
+	background-color: #33A876;
+	color: white;
+	padding-top: 3rem;
+	padding-bottom: 3rem;
+}
+
+#href_link {
+	color: white;
+}
+
+footer p {
+	margin-bottom: .25rem;
+}
+
+#logo_gruppe_img {
+	width: 150px;
+	margin-top: -20px;
+}
