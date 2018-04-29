@@ -47,3 +47,9 @@ footer p {
 	width: 150px;
 	margin-top: -20px;
 }
+
+#ueberschrift {
+	color: #D61B1B;
+	border-bottom: 3px solid #D61B1B;
+	margin-top: 15px;
+}
