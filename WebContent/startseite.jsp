@@ -18,35 +18,80 @@
 	<!-- Unsere eigenen Styles -->
 	<link href="styles.css" rel="stylesheet">
 	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://v4-alpha.getbootstrap.com/dist/js/bootstrap.min.js"></script>
+    
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
 </head>
 <body>
 
+	<nav class="navbar navbar-expand-md navbar-light bg-light">
+		<a class="navbar-brand" href="#"> <img id="navbar_logo_img"
+			src="images/Logo_transparent.png">
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarText" aria-controls="navbarText"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarText">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link" href="#">Home</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="#">Features</a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
+			</ul>
+			<form action="Logout" method="POST">
+			<span class="navbar-text"> 		
+       			<button id="logout_button" type="submit" class="btn btn-primary btn-lg btn-block login-button">
+     					<span class="fa fa-sign-out"></span> Logout
+   				</button>
+			</span>
+			</form>
+		</div>
+	</nav>
+	<br>
+
+
 	<div class="container">
+	
+		<div id="ueberschrift">
+			<h1>Daten Analyse</h1>
+		</div>
+		<br />
+		<br/>
+
 		<div class="row">
-			<div class="col-md-3">
-				<div id="image">
-					<img id="logo_img" src="images/Logo_transparent.png">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header">
+						<strong>Upload files</strong> <small> </small>
+					</div>
+					<div class="card-block">
+						<div class="upload_body">
+						<br/>
+						<br/>
+						    
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="col-md-6">
-				<div id="ueberschrift">
-					<h1>Willkommen User <%= username %></h1>
-				</div>			
-			</div>
-			<div class="col-md-3">
-				<form action="Logout" method="POST">
-					<input type="submit" id="login_button" value="Logout" class="btn btn-primary btn-lg btn-block login-button">
-				</form>
-			</div>		
 		</div>
-		<br/>
-		<br/>
+
 	</div>
-
-
-	
-	
-	<footer>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<footer>
 			<div class="container">
 			<div class="row">
 				<div class="col-md-9">
@@ -58,6 +103,7 @@
 				</div>
 				</div>
 			</div>
-	</footer>
+		</footer>
+	
 </body>
 </html>
