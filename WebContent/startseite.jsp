@@ -1,6 +1,5 @@
 <% 	
  	String username = (String) session.getAttribute("name"); 
-	System.out.println(username);
  	
 	if(username == null){
 		response.sendRedirect("login.jsp");
@@ -73,6 +72,15 @@
 						<div class="upload_body">
 						<br/>
 						<br/>
+						    
+						    <form method="post" enctype="multipart/form-data" action="CSVFileUploadServlet">
+								<input type="file" id="file" name="file" class="inputfile">
+								<br/><br/>
+								<div id="analyse_button">
+									<input type="submit" id="button" value="Analysieren" class="btn btn-primary btn-lg btn-block analyse-button">
+								</div>
+							</form>
+						    
 						    
 						</div>
 					</div>

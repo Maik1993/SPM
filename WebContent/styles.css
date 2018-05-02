@@ -16,7 +16,7 @@
 	font-weight: bold;
 }
 
-#login_button {
+#button {
 	background-color: #397CA3;
 }
 
@@ -79,5 +79,9 @@ footer p {
 .upload_body {
 	padding-left: 15px;
 	padding-right: 15px;
+}
+
+#analyse_button {
+	width: 150px;
 }
 
