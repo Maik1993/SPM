@@ -2,10 +2,6 @@
 	width: 225px;
 }
 
-body {
-	background-color: #cccccc;
-}
-
 #login_box {
     background-color: white;
     padding: 20px;
@@ -20,7 +16,7 @@ body {
 	font-weight: bold;
 }
 
-#login_button {
+#button {
 	background-color: #397CA3;
 }
 
@@ -53,3 +49,39 @@ footer p {
 	border-bottom: 3px solid #D61B1B;
 	margin-top: 15px;
 }
+
+@media (max-width: 768px) {
+		#logo_gruppe_img {
+		width: 150px;
+		margin-top: 0px;
+	}
+}
+
+#navbar_logo_img {
+	width: 100px;
+}
+
+#logout_button {
+	background-color: #f8f9fa;
+	color: black;
+	border: none !important;
+	font-size: 16px;
+	padding: 0px;
+}
+
+.nav-link {
+	color: black !important;
+}
+
+
+
+/* file uploader */
+.upload_body {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+#analyse_button {
+	width: 150px;
+}
+
