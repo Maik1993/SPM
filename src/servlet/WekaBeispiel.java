@@ -28,8 +28,8 @@ public class WekaBeispiel {
 
 	public static void main(String[] args) throws Exception {
 		// Eigenen Dateipfad eintragen, nicht meinen nehmen ;-)
-		String path = "C:/Users/Hilke Fasse/Documents/SS18/SPM/vorbereitung/";
-		String roh = path + "kd.csv";
+		String path = "WebContent/";
+		String roh = path + "kd_gross.csv";
 		String arffDat = path + "kd.arff";
 		String dateiMod = path + "kd.model.txt";
 		Instances alleDaten, nurWaren;

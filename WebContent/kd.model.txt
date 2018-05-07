@@ -1,0 +1,28 @@
+
+Apriori
+=======
+
+Minimum support: 0.6 (6000 instances)
+Minimum metric <confidence>: 0.9
+Number of cycles performed: 8
+
+Generated sets of large itemsets:
+
+Size of set of large itemsets L(1): 9
+
+Size of set of large itemsets L(2): 14
+
+Size of set of large itemsets L(3): 5
+
+Best rules found:
+
+ 1. Kaffee / Tee=1 7025 ==> Backwaren=1 6952    <conf:(0.99)> lift:(1.07) lev:(0.05) [472] conv:(7.37)
+ 2. Tiefkühlware=1 Backwaren=1 6481 ==> Konserven=1 6411    <conf:(0.99)> lift:(1.22) lev:(0.11) [1147] conv:(17.14)
+ 3. Tiefkühlware=1 6986 ==> Konserven=1 6909    <conf:(0.99)> lift:(1.22) lev:(0.12) [1234] conv:(16.82)
+ 4. Alkoholfreie Getränke=1 6982 ==> Backwaren=1 6852    <conf:(0.98)> lift:(1.06) lev:(0.04) [411] conv:(4.14)
+ 5. Frischfleisch=1 Chips=1 6634 ==> Bier=1 6363    <conf:(0.96)> lift:(1.36) lev:(0.17) [1700] conv:(7.25)
+ 6. Bier=1 7028 ==> Frischfleisch=1 6692    <conf:(0.95)> lift:(1.26) lev:(0.14) [1374] conv:(5.08)
+ 7. Bier=1 Backwaren=1 6486 ==> Chips=1 6172    <conf:(0.95)> lift:(1.26) lev:(0.13) [1266] conv:(5.02)
+ 8. Bier=1 Chips=1 6687 ==> Frischfleisch=1 6363    <conf:(0.95)> lift:(1.26) lev:(0.13) [1303] conv:(5.01)
+ 9. Bier=1 7028 ==> Chips=1 6687    <conf:(0.95)> lift:(1.26) lev:(0.14) [1371] conv:(5.01)
+10. Bier=1 Backwaren=1 6486 ==> Frischfleisch=1 6170    <conf:(0.95)> lift:(1.26) lev:(0.13) [1262] conv:(4.98)
