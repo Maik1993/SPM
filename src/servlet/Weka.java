@@ -24,14 +24,14 @@ import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.NumericCleaner;
 import weka.filters.unsupervised.attribute.NumericToNominal;
 
-public class WekaBeispiel {
+public class Weka {
 
-	public static void main(String[] args) throws Exception {
+	public void excecuteWeka(String filepath, String fileNameWithCode, String arffFilenameWithCode, String txtFilenameWithCode) throws Exception {
 		// Eigenen Dateipfad eintragen, nicht meinen nehmen ;-)
-		String path = "C:/Users/anwender/eclipse-workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/SPM/uploads/kd_klein.csv";
-		String roh = path + "kd_klein.csv";
-		String arffDat = path + "kd.arff";
-		String dateiMod = path + "kd.model.txt";
+		String path = filepath;
+		String roh = path + fileNameWithCode;
+		String arffDat = path + arffFilenameWithCode;
+		String dateiMod = path + txtFilenameWithCode;
 		Instances alleDaten, nurWaren;
 
 		// CSV-Datei laden

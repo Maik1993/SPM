@@ -73,7 +73,7 @@
 						<br/>
 						<br/>
 						    
-						    <form method="post" enctype="multipart/form-data" action="CSVFileUploadServlet">
+						    <form method="post" enctype="multipart/form-data" action="FileUploader">
 								<input type="file" id="file" name="file" class="inputfile">
 								<br/><br/>
 								<div id="analyse_button">
