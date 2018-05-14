@@ -1,3 +1,4 @@
+<!-- https://stackoverflow.com/questions/19525608/how-to-include-loading-gif-while-file-upload-and-insert-to-database-is-in-progre -->
 <% 	
  	String username = (String) session.getAttribute("name"); 
  	
@@ -21,6 +22,49 @@
     <script src="https://v4-alpha.getbootstrap.com/dist/js/bootstrap.min.js"></script>
     
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script>
+//     document.addEventListener("DOMContentLoaded", function(event) {
+//     	document.getElementById('loading').style.display="none";
+//     });
+	
+// 	function showLoading(){
+// 		var loading = document.getElementById("loading");
+// 		if (loading.style.display=="none"){
+// 			loading.removeAttribute("style");	
+// 		}
+// 	}
+	
+// 	function hideLoading(){
+// 		var loading = document.getElementById("loading");
+// 		if (loading.style.display==""){
+// 			loading.style.display = "none";
+// 		}
+// 	}
+
+	$(document).ready(function(){
+		var loading = $('#loading');
+		if(loading.css('display') == 'block') {
+			loading.removeAttr('style');
+			loading.attr('style', 'display: none');
+		}
+		
+	    $.fn.showLoading = function(){ 
+	    	if(loading.css('display') == 'none') {
+	    		loading.removeAttr('style');
+				loading.attr('style', 'display: block');
+			}
+	    };
+	    
+	    $.fn.hideLoading = function(){ 
+	    	if(loading.css('display') == 'block') {
+	    		loading.removeAttr('style');
+				loading.attr('style', 'display: none');
+			};
+	    };
+	});
+
+	</script>
 
 </head>
 <body>
@@ -80,7 +124,7 @@
 									<input type="submit" id="button" value="Analysieren" class="btn btn-primary btn-lg btn-block analyse-button">
 								</div>
 							</form>
-						    
+						    <img id="loading" src="images/loading_icon.gif" style="display: none">
 						    
 						</div>
 					</div>
@@ -113,5 +157,20 @@
 			</div>
 		</footer>
 	
+		<script>
+		$("#button").click(function () {     
+		    //call show loading function here
+		    $.fn.showLoading();
+		    $.ajax({
+		    	url: "FileUploader",
+		        success: function () {
+		            //call hide function here
+		            alert("Data successfully");
+		            $.fn.hideLoading();
+		        }
+		    });
+		});
+		
+		</script>
 </body>
 </html>
