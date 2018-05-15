@@ -24,42 +24,19 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 	<script>
-//     document.addEventListener("DOMContentLoaded", function(event) {
-//     	document.getElementById('loading').style.display="none";
-//     });
-	
-// 	function showLoading(){
-// 		var loading = document.getElementById("loading");
-// 		if (loading.style.display=="none"){
-// 			loading.removeAttribute("style");	
-// 		}
-// 	}
-	
-// 	function hideLoading(){
-// 		var loading = document.getElementById("loading");
-// 		if (loading.style.display==""){
-// 			loading.style.display = "none";
-// 		}
-// 	}
-
 	$(document).ready(function(){
 		var loading = $('#loading');
-		if(loading.css('display') == 'block') {
-			loading.removeAttr('style');
-			loading.attr('style', 'display: none');
-		}
+		loading.hide();
 		
 	    $.fn.showLoading = function(){ 
 	    	if(loading.css('display') == 'none') {
-	    		loading.removeAttr('style');
-				loading.attr('style', 'display: block');
-			}
+	    		loading.show();
+	    		}
 	    };
 	    
 	    $.fn.hideLoading = function(){ 
 	    	if(loading.css('display') == 'block') {
-	    		loading.removeAttr('style');
-				loading.attr('style', 'display: none');
+	    		loading.hide();
 			};
 	    };
 	});
@@ -166,14 +143,6 @@
 		$("#button").click(function () {     
 		    //call show loading function here
 		    $.fn.showLoading();
-		    $.ajax({
-		    	url: "FileUploader",
-		        success: function () {
-		            //call hide function here
-		            alert("Data successfully");
-		            $.fn.hideLoading();
-		        }
-		    });
 		});
 		
 		</script>
