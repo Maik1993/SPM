@@ -2,7 +2,7 @@ package servlet;
 
 /* Beispielprogramm, um WeKa (Apriori) in eclipse zu verwenden.
 
- Die Rohdaten liegen im CSV-Format vor. WeKa benötigt das arff-Format.
+ Die Rohdaten liegen im CSV-Format vor. WeKa benï¿½tigt das arff-Format.
 
  Die Rohdaten enthalten die folgenden 24 Attribute,
  0..4  Kundendaten
@@ -10,7 +10,7 @@ package servlet;
  7..23 gekaufte Waren
 
  Hier sind  nur ein paar Beispiele zu sehen, wie man die Assoziationsanalyse verwenden kann.
- Weitere Einstellungen (falls nötig) selbst recherchieren!
+ Weitere Einstellungen (falls nï¿½tig) selbst recherchieren!
  */
 
 import java.io.*;
@@ -39,8 +39,8 @@ public class Weka {
 		loader.setSource(new File(roh));
 		alleDaten = loader.getDataSet();
 
-		// 0 durch ? ersetzen, um für die Auswertung nur die Waren zu
-		// berücksichtigen, die gekauft wurden
+		// 0 durch ? ersetzen, um fï¿½r die Auswertung nur die Waren zu
+		// berï¿½cksichtigen, die gekauft wurden
 		NumericCleaner nc = new NumericCleaner();
 		nc.setMinThreshold(1.0); // Schwellwert auf 1 setzen
 		nc.setMinDefault(Double.NaN); // alles unter Schwellwert durch ?
@@ -71,7 +71,7 @@ public class Weka {
 
 		// Apriori anwenden
 
-		// Kundendaten rausnehmen, nur Warenkörbe stehen lassen
+		// Kundendaten rausnehmen, nur Warenkï¿½rbe stehen lassen
 		nurWaren = new Instances(alleDaten);
 		for (int i = 0; i < 7; i++) {
 			nurWaren.deleteAttributeAt(0); // ein einzelnes Attribut rausnehmen

@@ -80,11 +80,10 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarText">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="#">Home</a>
+				<li class="nav-item"><a class="nav-link" href="startseite.jsp"><span class="fa fa-file-excel-o"></span> Daten Analyse</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="#">Features</a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="#">Pricing</a></li>
+<!-- 				<li class="nav-item"><a class="nav-link" href="#"><span class="fa fa-bar-chart"></span> Statistiken</a> -->
+<!-- 				</li> -->
 			</ul>
 			<form action="Logout" method="POST">
 			<span class="navbar-text"> 		
@@ -125,12 +124,18 @@
 								</div>
 							</form>
 						    <img id="loading" src="images/loading_icon.gif" style="display: none">
-						    
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<br/>
+		<br/>
+		<div id="ueberschrift">
+			<h1>Daten Auswertung</h1>
+		</div>
+		<br />
+		<br/>
 
 	</div>
 		<br/>
