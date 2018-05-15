@@ -20,17 +20,37 @@ import javax.servlet.http.Part;
 		maxFileSize = 10485760L, // 10 MB
 		maxRequestSize = 20971520L // 20 MB
 )
+
+/**
+ * Klasse fuer den File Uploader
+ * CSV Datei Analyse durch Weka
+ * @author Just Do it
+ *
+ */
 public class FileUploader extends HttpServlet {
 	private static final long serialVersionUID = 5619951677845873534L;
 	
 	private static final String UPLOAD_DIR = "uploads";
 	
+	/**
+	 * Get Parameter Methode
+	 * wird hier nicht gebraucht
+	 * @param request
+	 * @param response
+	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 	}
 	
+	/**
+	 * CSV Datei Analyse
+	 * Csv Datei wird vom FileUplaoder gelesen, abgelegt im Dateipfad und mit
+	 * Weka analysiert
+	 * @param request
+	 * @param response
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -82,8 +102,6 @@ public class FileUploader extends HttpServlet {
 				
 				RequestDispatcher req = request.getRequestDispatcher("startseite.jsp");
 				req.forward(request, response);
-				
-
 			}
 		}
 	}

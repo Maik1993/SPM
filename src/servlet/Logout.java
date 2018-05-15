@@ -25,6 +25,7 @@ public class Logout extends HttpServlet {
     }
 
 	/**
+	 * Get Methode- wird hier nicht gebraucht
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,6 +34,8 @@ public class Logout extends HttpServlet {
 	}
 
 	/**
+	 * Logout Methode
+	 * Session wird zerstört, Weiterleitung zum Login 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

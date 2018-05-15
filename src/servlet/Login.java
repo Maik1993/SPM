@@ -25,14 +25,17 @@ public class Login extends HttpServlet {
     }
 
 	/**
+	 * Get Methode - wird hier nicht gebaraucht
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("Test");
 	}
 
 	/**
+	 * Einlog Methode
+	 * Passwort wird abgefragt, Session wird angleget, weiterleitung zur bestimmten
+	 * Seite wenn Passwort übereinstimmt oder nicht
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
