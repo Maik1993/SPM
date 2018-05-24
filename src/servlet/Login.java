@@ -48,12 +48,14 @@ public class Login extends HttpServlet {
 		if(!passwort.equals(passwort_right))
 		{
 			address = "login.jsp";
-
+			HttpSession session = request.getSession(true); 
+			session.setAttribute("error", true);
 		} else
 		{
 			address = "startseite.jsp";
 			HttpSession session = request.getSession(true); 
 			session.setAttribute("name", user);
+			
 
 		}
 		
