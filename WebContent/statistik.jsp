@@ -1,10 +1,15 @@
-<!-- https://stackoverflow.com/questions/19525608/how-to-include-loading-gif-while-file-upload-and-insert-to-database-is-in-progre -->
+<!-- Hilfeseite http://www.chartjs.org/docs/latest/charts/doughnut.html -->
+<%@page import="java.util.ArrayList" %>
+<%@page import="servlet.Product" %>
 <% 	
  	String username = (String) session.getAttribute("name"); 
  	
 	if(username == null){
 		response.sendRedirect("login.jsp");
  	}
+	
+	int place = 1;
+	ArrayList<Product> top5 = (ArrayList<Product>) request.getAttribute("top5Artikel");
 %>
 
 <!DOCTYPE html>
@@ -23,6 +28,11 @@
     
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
+<!-- 	Chart js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 </head>
 <body>
 
@@ -64,7 +74,60 @@
 
 		<div class="row">
 			<div class="col-md-12">
-				
+				<div class="card">
+					<div class="card-header">
+						<strong>Top 5 Artikel</strong> <small> </small>
+					</div>
+					<div class="card-block">
+						
+					</div>
+					<div class="chart-container" style="position: relative; width:40vw">
+						<canvas id="myChart"></canvas>
+					</div>
+					<script>
+					var ctx = document.getElementById("myChart");
+					var data = {
+				    	    datasets: [{
+				    	        data:
+				    	        	[
+				    	        	<% for (Product topProducts : top5) { %>
+				    	        		<%= topProducts.amount() %>, 
+				    	        	<% } %>
+				    	        	],
+				    	        backgroundColor: [
+				                    'rgba(255, 99, 132, 0.2)',
+				                    'rgba(54, 162, 235, 0.2)',
+				                    'rgba(255, 206, 86, 0.2)',
+				                    'rgba(75, 192, 192, 0.2)',
+				                    'rgba(153, 102, 255, 0.2)',
+				                    'rgba(255, 159, 64, 0.2)'
+				                ],
+				                borderColor: [
+				                    'rgba(255,99,132,1)',
+				                    'rgba(54, 162, 235, 1)',
+				                    'rgba(255, 206, 86, 1)',
+				                    'rgba(75, 192, 192, 1)',
+				                    'rgba(153, 102, 255, 1)',
+				                    'rgba(255, 159, 64, 1)'
+				                ],
+				                borderWidth: 1
+				    	    
+				    	    }],
+
+				    	    // These labels appear in the legend and in the tooltips when hovering different arcs
+				    	    labels: [
+				    	    	<% for (Product topProducts : top5) { %>
+				    	    		"<%= topProducts.title() %>",
+				    	    	<% } %>
+				    	    ]
+				    	}
+					var myChart = new Chart(ctx, {
+					    type: 'pie',
+					    data : data
+					});
+					</script>
+					<br/>
+				</div>
 			</div>
 		</div>
 		<br/>
@@ -94,5 +157,13 @@
 				</div>
 			</div>
 		</footer>
+		
+		<script>
+		// Any of the following formats may be used
+		var ctx = document.getElementById("myChart");
+		var ctx = document.getElementById("myChart").getContext("2d");
+		var ctx = $("#myChart");
+		var ctx = "myChart";
+		</script>
 </body>
 </html>

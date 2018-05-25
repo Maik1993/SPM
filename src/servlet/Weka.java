@@ -104,19 +104,21 @@ public class Weka {
 		return this.roh;
 	}
 
-	public void getTop5Artikel() throws Exception {
+	public ArrayList<Product> getTop5Artikel() throws Exception {
 		CSVLoader loader = this.getInitializedLoader();
 		// -----------------------------------------
 		Instances allData = loader.getDataSet();
 		ProductList productList = this.generateProductList(allData);
 		int topListLength = 5;
 		ArrayList<Product> top5 = productList.getTopProducts(topListLength);
-		int place = 1;
-		System.out.println("Top " + topListLength);
-		for (Product topProducts : top5) {
-			System.out.println("Platz " + place + " " + topProducts.title() + ": " + topProducts.amount());
-			place++;
-		}
+		
+//		int place = 1;
+//		System.out.println("Top " + topListLength);
+//		for (Product topProducts : top5) {
+//			System.out.println("Platz " + place + " " + topProducts.title() + ": " + topProducts.amount());
+//			place++;
+//		}
+		return top5;
 	}
 
 	private CSVLoader getInitializedLoader() {
@@ -146,7 +148,7 @@ public class Weka {
 		String[] headerRowAsArray = headerRow.split(",");
 		for (int headerIndex = this.PRODUCT_START; headerIndex < headerRowAsArray.length; headerIndex++) {
 			String title = headerRowAsArray[headerIndex];
-			titleList.add(title.toLowerCase().replace("ä", "ae").replace("ü", "ue"));
+			titleList.add(title);
 		}
 
 		ProductList productList = new ProductList();

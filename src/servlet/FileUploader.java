@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -96,14 +97,17 @@ public class FileUploader extends HttpServlet {
 				System.out.println(escapedFilepath);
 				
 				Weka weka = new Weka();
+				ArrayList<Product> top5 = new ArrayList<Product>();
 				try {
 					weka.excecuteWeka(escapedFilepath, fileNameWithCode, arffFilenameWithCode, txtFilenameWithCode);
-					weka.getTop5Artikel();
+					top5 = weka.getTop5Artikel();
+					
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
+				request.setAttribute("top5Artikel", top5);
 				RequestDispatcher req = request.getRequestDispatcher("statistik.jsp");
 				req.forward(request, response);
 			}else {
