@@ -95,12 +95,13 @@ public class FileUploader extends HttpServlet {
 				Weka weka = new Weka();
 				try {
 					weka.excecuteWeka(escapedFilepath, fileNameWithCode, arffFilenameWithCode, txtFilenameWithCode);
+					weka.getTop5Artikel();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
-				RequestDispatcher req = request.getRequestDispatcher("startseite.jsp");
+				RequestDispatcher req = request.getRequestDispatcher("statistik.jsp");
 				req.forward(request, response);
 			}
 		}

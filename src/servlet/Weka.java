@@ -14,7 +14,7 @@ package servlet;
  */
 
 import java.io.*;
-
+import java.util.ArrayList;
 import weka.associations.Apriori;
 import weka.core.Instances;
 import weka.core.converters.ArffSaver;
@@ -25,11 +25,17 @@ import weka.filters.unsupervised.attribute.NumericCleaner;
 import weka.filters.unsupervised.attribute.NumericToNominal;
 
 public class Weka {
+	public String roh;
+	private final int PRODUCT_START = 7;
 
-	public void excecuteWeka(String filepath, String fileNameWithCode, String arffFilenameWithCode, String txtFilenameWithCode) throws Exception {
+	public void excecuteWeka(String filepath, String fileNameWithCode, String arffFilenameWithCode,
+			String txtFilenameWithCode) throws Exception {
 		// Eigenen Dateipfad eintragen, nicht meinen nehmen ;-)
 		String path = filepath;
 		String roh = path + fileNameWithCode;
+
+		this.setRoh(roh);
+
 		String arffDat = path + arffFilenameWithCode;
 		String dateiMod = path + txtFilenameWithCode;
 		Instances alleDaten, nurWaren;
@@ -48,13 +54,11 @@ public class Weka {
 		nc.setInputFormat(alleDaten);
 		alleDaten = Filter.useFilter(alleDaten, nc); // Filter anwenden.
 
-
 		// Die Daten als nominale und nicht als numerische Daten setzen
 		NumericToNominal num2nom = new NumericToNominal();
 		num2nom.setAttributeIndices("first-last");
 		num2nom.setInputFormat(alleDaten);
 		alleDaten = Filter.useFilter(alleDaten, num2nom);
-
 
 		// als ARFF speichern -- in diesem Beispiel nicht notwendig
 		ArffSaver saver = new ArffSaver();
@@ -62,12 +66,9 @@ public class Weka {
 		saver.setFile(new File(arffDat));
 		saver.writeBatch();
 
-
 		// ARFF Datei laden -- in diesem Beispiel nicht notwendig
 		DataSource source = new DataSource(arffDat);
 		alleDaten = source.getDataSet();
-
-
 
 		// Apriori anwenden
 
@@ -76,7 +77,6 @@ public class Weka {
 		for (int i = 0; i < 7; i++) {
 			nurWaren.deleteAttributeAt(0); // ein einzelnes Attribut rausnehmen
 		}
-
 
 		Apriori model = new Apriori();
 		Apriori warenModel = new Apriori();
@@ -89,12 +89,84 @@ public class Weka {
 		System.out.println(model);
 		System.out.println(warenModel);
 
-
 		// Apriori-Auswertung in Datei speichern
 		Writer fp1 = new FileWriter(dateiMod);
 		fp1.write(model.toString());
 		fp1.close();
 
+	}
+
+	public void setRoh(String roh) {
+		this.roh = roh;
+	}
+
+	public String getRoh() {
+		return this.roh;
+	}
+
+	public void getTop5Artikel() throws Exception {
+		CSVLoader loader = this.getInitializedLoader();
+		// -----------------------------------------
+		Instances allData = loader.getDataSet();
+		ProductList productList = this.generateProductList(allData);
+		int topListLength = 5;
+		ArrayList<Product> top5 = productList.getTopProducts(topListLength);
+		int place = 1;
+		System.out.println("Top " + topListLength);
+		for (Product topProducts : top5) {
+			System.out.println("Platz " + place + " " + topProducts.title() + ": " + topProducts.amount());
+			place++;
+		}
+	}
+
+	private CSVLoader getInitializedLoader() {
+		// CSV-Datei laden
+		CSVLoader loader = new CSVLoader();
+		try {
+			String roh = this.getRoh();
+
+			loader.setSource(new File(roh));
+
+			// Header Information hinzufügen ------------
+			// -siehe Doku
+			// http://weka.sourceforge.net/doc.dev/weka/core/converters/CSVLoader.html
+			String[] options = new String[1];
+			options[0] = "-H";
+			loader.setOptions(options);
+		} catch (Exception ex) {
+			System.err.println("Achtung!CSV-Loader konnte nicht geladen werden");
+			System.err.println(ex.getMessage());
+		}
+		return loader;
+	}
+
+	private ProductList generateProductList(Instances allData) {
+		ArrayList<String> titleList = new ArrayList<String>();
+		String headerRow = allData.get(0).toString();
+		String[] headerRowAsArray = headerRow.split(",");
+		for (int headerIndex = this.PRODUCT_START; headerIndex < headerRowAsArray.length; headerIndex++) {
+			String title = headerRowAsArray[headerIndex];
+			titleList.add(title.toLowerCase().replace("ä", "ae").replace("ü", "ue"));
+		}
+
+		ProductList productList = new ProductList();
+
+		for (int i = 1; i < allData.size(); i++)
+		{
+			String ganzeZeile = allData.get(i).toString();
+			String[] items = ganzeZeile.split(",");
+			for (int
+					productCounterIndex = this.PRODUCT_START; 
+					productCounterIndex < items.length; 
+					productCounterIndex++) 
+			{
+				String title = titleList.get(productCounterIndex - this.PRODUCT_START);
+				Product productToAdd = new Product(title, Integer.parseInt(items[productCounterIndex]));
+				productList.add(productToAdd);
+			}
+		}
+
+		return productList;
 	}
 
 }

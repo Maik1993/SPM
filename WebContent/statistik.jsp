@@ -23,26 +23,6 @@
     
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-	<script>
-	$(document).ready(function(){
-		var loading = $('#loading');
-		loading.hide();
-		
-	    $.fn.showLoading = function(){ 
-	    	if(loading.css('display') == 'none') {
-	    		loading.show();
-	    		}
-	    };
-	    
-	    $.fn.hideLoading = function(){ 
-	    	if(loading.css('display') == 'block') {
-	    		loading.hide();
-			};
-	    };
-	});
-
-	</script>
-
 </head>
 <body>
 
@@ -77,40 +57,26 @@
 	<div class="container">
 	
 		<div id="ueberschrift">
-			<h1>Daten Analyse</h1>
+			<h1>Statistiken</h1>
 		</div>
 		<br />
 		<br/>
 
 		<div class="row">
 			<div class="col-md-12">
-				<div class="card">
-					<div class="card-header">
-						<strong>Wählen Sie Ihre CSV Datei aus</strong> <small> </small>
-					</div>
-					<div class="card-block">
-						<div class="upload_body">
-						<br/>
-						<br/>
-						    
-						    <form method="post" enctype="multipart/form-data" action="FileUploader">
-								<input type="file" id="file" name="file" class="inputfile">
-								<br/><br/>
-								<div id="analyse_button">
-									<input type="submit" id="button" value="Analysieren" class="btn btn-primary btn-lg btn-block analyse-button">
-								</div>
-							</form>
-						    <img id="loading" src="images/loading_icon.gif" width="250px" style="display: none">
-						</div>
-					</div>
-					<br/>
-				</div>
+				
 			</div>
 		</div>
 		<br/>
 		<br/>
 
 	</div>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
 		<br/>
 		<br/>
 		<br/>
@@ -128,13 +94,5 @@
 				</div>
 			</div>
 		</footer>
-	
-		<script>
-		$("#button").click(function () {     
-		    //call show loading function here
-		    $.fn.showLoading();
-		});
-		
-		</script>
 </body>
 </html>
