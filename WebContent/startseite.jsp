@@ -5,6 +5,13 @@
 	if(username == null){
 		response.sendRedirect("login.jsp");
  	}
+	
+	boolean noData = false;
+	try {
+		noData = (boolean) session.getAttribute("noData");
+	} catch (NullPointerException e) {
+
+	}
 %>
 
 <!DOCTYPE html>
@@ -94,8 +101,13 @@
 						<br/>
 						    
 						    <form method="post" enctype="multipart/form-data" action="FileUploader">
-								<input type="file" id="file" name="file" class="inputfile">
+								<input type="file" id="file" name="file" class="inputfile" accept=".csv">
 								<br/><br/>
+							<% if(noData){ %>
+							<br/>
+							<p class="text-danger">Keine Datei ausgewählt!</p>
+						
+							<% } %>
 								<div id="analyse_button">
 									<input type="submit" id="button" value="Analysieren" class="btn btn-primary btn-lg btn-block analyse-button">
 								</div>

@@ -41,7 +41,7 @@
 							<% if(error){ %>
 							<br/>
 							<p class="text-danger">Falsches Passwort!</p>
-							<br/>
+						
 							<% } %>
 							 <br /> <input type="submit" id="button" value="Einloggen"
 							class="btn btn-primary btn-lg btn-block login-button">

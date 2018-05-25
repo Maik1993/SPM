@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 @WebServlet("/FileUploader")
@@ -54,6 +55,8 @@ public class FileUploader extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession(true); 
+		session.setAttribute("noData", false);
 		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");
 		// gets absolute path of the web application
@@ -101,6 +104,11 @@ public class FileUploader extends HttpServlet {
 				}
 				
 				RequestDispatcher req = request.getRequestDispatcher("startseite.jsp");
+				req.forward(request, response);
+			}else {
+				RequestDispatcher req = request.getRequestDispatcher("startseite.jsp");
+				
+				session.setAttribute("noData", true);
 				req.forward(request, response);
 			}
 		}
