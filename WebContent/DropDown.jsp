@@ -17,6 +17,9 @@
 	}*/
 	
 	Strategienliste sl = new Strategienliste();
+	String newStrat = request.getParameter("strat");
+	System.out.println(newStrat);
+//	sl.addStrategy(newStrat);
 %>
 
 <!DOCTYPE html>
@@ -111,7 +114,29 @@
 							</ul>
 						</div>
 						<br/>
-						<button class="btn btn-success" type="button">Hinzuf&uuml;gen</button>
+						
+						<button class="btn btn-success" type="button" data-toggle="modal" data-target="#addModal">Hinzuf&uuml;gen</button>
+						<!-- Modal -->
+						<div class="modal fade" id="addModal" role="dialog">
+							<div class="modal-dialog">
+								<!-- Modal Content -->
+								<div class="modal-content">
+								<form action="<%=response.encodeURL("DropDown") %>" method="post">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="modal-title">Marketingstrategie hinzuf&uuml;gen</h4>
+									</div>
+									<div class="modal-body">
+											<input class="form-control" type="text" name="strat">
+									</div>
+									<div class="modal-footer">
+										<button type="submit" class="btn btn-default">Best&auml;tigen</button>
+										<button type="button" class="btn btn-default" data-dismiss="modal">Schlie&szlig;en</button>
+									</div>
+								</form>
+								</div>
+							</div>
+						</div>
 					</div>
 					<br/>
 				</div>

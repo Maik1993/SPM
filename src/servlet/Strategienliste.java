@@ -2,10 +2,12 @@ package servlet;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.io.FileNotFoundException;
 
 public class Strategienliste {
 	private ArrayList<String> list;
@@ -14,8 +16,16 @@ public class Strategienliste {
 		list = new ArrayList<String>();
 		try {
 			list = load();
+		} catch (FileNotFoundException f) {
+			System.out.println("Nicht gefunden");
+			File file = new File("Marketingstrategien.txt");
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				System.out.println("Nicht neu erzeugt");
+				e.printStackTrace();
+			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
