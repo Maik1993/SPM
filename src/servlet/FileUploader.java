@@ -105,10 +105,17 @@ public class FileUploader extends HttpServlet {
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					System.out.println("Error encountered");
+					RequestDispatcher req = request.getRequestDispatcher("startseite.jsp");
+					
+					session.setAttribute("wrongData", true);
+					req.forward(request, response);
 				}
 				
 				request.setAttribute("top5Artikel", top5);
 				RequestDispatcher req = request.getRequestDispatcher("statistik.jsp");
+				session.setAttribute("wrongData", false);
+				session.setAttribute("noData", false);
 				req.forward(request, response);
 			}else {
 				RequestDispatcher req = request.getRequestDispatcher("startseite.jsp");

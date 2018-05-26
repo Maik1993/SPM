@@ -7,8 +7,10 @@
  	}
 	
 	boolean noData = false;
+	boolean wrongData = false;
 	try {
 		noData = (boolean) session.getAttribute("noData");
+		wrongData = (boolean) session.getAttribute("wrongData");
 	} catch (NullPointerException e) {
 
 	}
@@ -106,6 +108,11 @@
 							<% if(noData){ %>
 							<br/>
 							<p class="text-danger">Keine Datei ausgewählt!</p>
+						
+							<% } %>
+							<% if(wrongData){ %>
+							<br/>
+							<p class="text-danger">Falscher Dateityp!</p>
 						
 							<% } %>
 								<div id="analyse_button">
