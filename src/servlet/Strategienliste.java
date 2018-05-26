@@ -7,12 +7,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Stratiegienliste {
+public class Strategienliste {
 	private ArrayList<String> list;
 	
-	public Stratiegienliste() throws IOException {
+	public Strategienliste() {
 		list = new ArrayList<String>();
-		list = load();
+		try {
+			list = load();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void addStrategy(String strategy) throws IOException {
