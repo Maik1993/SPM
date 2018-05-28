@@ -17,9 +17,6 @@
 	}*/
 	
 	Strategienliste sl = new Strategienliste();
-	String newStrat = request.getParameter("strat");
-	System.out.println(newStrat);
-//	sl.addStrategy(newStrat);
 %>
 
 <!DOCTYPE html>
@@ -108,7 +105,8 @@
 						<div class="dropdown">
 							<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Strategien<span class="caret"></span></button>
 							<ul class="dropdown-menu">
-							<% for(String s:sl.getList()) { %>
+							<% for(String s:sl.getList()) {
+								System.out.println(" " + s);%>
 								<li><a href="#"><%=s %></a></li>
 							<% } %>
 							</ul>
@@ -121,13 +119,20 @@
 							<div class="modal-dialog">
 								<!-- Modal Content -->
 								<div class="modal-content">
-								<form action="<%=response.encodeURL("DropDown") %>" method="post">
+								<form>
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal">&times;</button>
 										<h4 class="modal-title">Marketingstrategie hinzuf&uuml;gen</h4>
 									</div>
 									<div class="modal-body">
-											<input class="form-control" type="text" name="strat">
+											<input class="form-control" type="text" name="strategy" />
+											<%session.setAttribute("strat", request.getParameter("strategy")); 
+											String newStrat = (String) session.getAttribute("strat");
+											System.out.println("Test: " + newStrat);
+											if(newStrat != null && newStrat != "null") {
+												sl.addStrategy(newStrat);	//noch Fehler
+												System.out.println("2");
+											}%>
 									</div>
 									<div class="modal-footer">
 										<button type="submit" class="btn btn-default">Best&auml;tigen</button>
