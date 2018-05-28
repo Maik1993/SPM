@@ -130,8 +130,7 @@
 											String newStrat = (String) session.getAttribute("strat");
 											System.out.println("Test: " + newStrat);
 											if(newStrat != null && newStrat != "null") {
-												sl.addStrategy(newStrat);	//noch Fehler
-												System.out.println("2");
+												sl.addStrategy(newStrat);
 											}%>
 									</div>
 									<div class="modal-footer">

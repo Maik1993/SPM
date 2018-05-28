@@ -20,7 +20,12 @@ public class Strategienliste {
 			System.out.println("Nicht gefunden");
 			File file = new File("Marketingstrategien.txt");
 			try {
+				if(!file.exists()) {
 				file.createNewFile();
+				System.out.println("Erstellt");
+				} else {
+					System.out.println("Vorhanden");
+				}
 			} catch (IOException e) {
 				System.out.println("Nicht neu erzeugt");
 				e.printStackTrace();
@@ -30,9 +35,16 @@ public class Strategienliste {
 		}
 	}
 	
-	public void addStrategy(String strategy) throws IOException {
-		list.add(strategy);
-		save();
+	public void addStrategy(String strategy) {
+		if(!list.contains(strategy)) {
+			list.add(strategy);
+			try {
+				save();
+			} catch (IOException e) {
+				System.out.println("Fehler");
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	public ArrayList<String> getList() {
@@ -40,9 +52,10 @@ public class Strategienliste {
 	}
 	
 	private void save() throws IOException {
-		BufferedWriter bw = new BufferedWriter(new FileWriter("Marketingstrategien"));
+		BufferedWriter bw = new BufferedWriter(new FileWriter("Marketingstrategien.txt", false));
 		for(String line:list) {
-			bw.write(line + "\n");
+			bw.write(line);
+			bw.newLine();
 		}
 		bw.close();
 	}
