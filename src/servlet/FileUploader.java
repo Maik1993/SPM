@@ -97,12 +97,12 @@ public class FileUploader extends HttpServlet {
 				ArrayList<Product> frauenanteil = new ArrayList<Product>();
 				ArrayList<Product> kinderanteil = new ArrayList<Product>();
 				ArrayList<Product> berufsanteil = new ArrayList<Product>();
-				
+				int anzahlDatensatze = 0;
 				String zusammengekaufteWaren = "";
 				try {
 					zusammengekaufteWaren = weka.excecuteWeka(escapedFilepath, fileNameWithCode, arffFilenameWithCode, txtFilenameWithCode);
+					anzahlDatensatze = weka.getAnzahlDatensaetze();
 					top5 = weka.getTop5Artikel();
-					
 					maenneranteil = weka.getEineSpalte(0, "m");
 					frauenanteil = weka.getEineSpalte(0, "w");
 					kinderanteil = weka.getEineSpalte(2, "kinder");
@@ -118,6 +118,7 @@ public class FileUploader extends HttpServlet {
 					req.forward(request, response);
 				}
 				
+				request.setAttribute("anzahlDaten", anzahlDatensatze);
 				request.setAttribute("zusammengekaufteWaren", zusammengekaufteWaren);
 				request.setAttribute("top5Artikel", top5);
 				request.setAttribute("maenneranteil", maenneranteil);

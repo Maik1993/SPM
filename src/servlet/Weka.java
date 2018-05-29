@@ -229,5 +229,16 @@ public class Weka {
 
 		return productList;
 	}
+	
+	public int getAnzahlDatensaetze() throws Exception {
+		int anzahlDatensaetze = 0;
+		CSVLoader loader = this.getInitializedLoader();
+		Instances allData = loader.getDataSet();
+		//-1 wegen der HeaderInfomationen
+		anzahlDatensaetze = allData.size() - 1;
+		
+		return anzahlDatensaetze;
+		
+	}
 
 }

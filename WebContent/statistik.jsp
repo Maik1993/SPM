@@ -10,6 +10,7 @@
 	
 	int place = 1;
 	ArrayList<Product> top5 = (ArrayList<Product>) request.getAttribute("top5Artikel");
+	int anzahlDatensaetze = (int) request.getAttribute("anzahlDaten");
 	ArrayList<Product> maenneranteil = (ArrayList<Product>) request.getAttribute("maenneranteil");
 	ArrayList<Product> frauenanteil = (ArrayList<Product>) request.getAttribute("frauenanteil");
 	ArrayList<Product> kinderanteil = (ArrayList<Product>) request.getAttribute("kinderanteil");
@@ -72,7 +73,7 @@
 	<div class="container">
 	
 		<div id="ueberschrift">
-			<h1>Statistiken</h1>
+			<h1>Statistiken - Menge der analysierten Daten <%= anzahlDatensaetze %></h1>
 		</div>
 		<br />
 		<br/>
