@@ -84,11 +84,6 @@ public class FileUploader extends HttpServlet {
 				String txtFilenameWithCode = timestamp+"_"+"kd.model.txt";
 				
 				
-				// allows only CSV files to be uploaded
-//				if (!contentType.equalsIgnoreCase("application/ms-excel")) {
-//					csvType = true;
-//				}
-				
 				part.write(uploadFilePath + File.separator + fileNameWithCode);
 				
 				String filepath = uploadFolder.getAbsolutePath() + File.separator;
@@ -98,9 +93,20 @@ public class FileUploader extends HttpServlet {
 				
 				Weka weka = new Weka();
 				ArrayList<Product> top5 = new ArrayList<Product>();
+				ArrayList<Product> maenneranteil = new ArrayList<Product>();
+				ArrayList<Product> frauenanteil = new ArrayList<Product>();
+				ArrayList<Product> kinderanteil = new ArrayList<Product>();
+				ArrayList<Product> berufsanteil = new ArrayList<Product>();
+				
+				String zusammengekaufteWaren = "";
 				try {
-					weka.excecuteWeka(escapedFilepath, fileNameWithCode, arffFilenameWithCode, txtFilenameWithCode);
+					zusammengekaufteWaren = weka.excecuteWeka(escapedFilepath, fileNameWithCode, arffFilenameWithCode, txtFilenameWithCode);
 					top5 = weka.getTop5Artikel();
+					
+					maenneranteil = weka.getEineSpalte(0, "m");
+					frauenanteil = weka.getEineSpalte(0, "w");
+					kinderanteil = weka.getEineSpalte(2, "kinder");
+					berufsanteil = weka.getEineSpalte(4, "beruf");
 					
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -112,7 +118,12 @@ public class FileUploader extends HttpServlet {
 					req.forward(request, response);
 				}
 				
+				request.setAttribute("zusammengekaufteWaren", zusammengekaufteWaren);
 				request.setAttribute("top5Artikel", top5);
+				request.setAttribute("maenneranteil", maenneranteil);
+				request.setAttribute("frauenanteil", frauenanteil);
+				request.setAttribute("kinderanteil", kinderanteil);
+				request.setAttribute("berufsanteil", berufsanteil);
 				RequestDispatcher req = request.getRequestDispatcher("statistik.jsp");
 				session.setAttribute("wrongData", false);
 				session.setAttribute("noData", false);

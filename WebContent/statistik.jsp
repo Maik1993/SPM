@@ -10,6 +10,11 @@
 	
 	int place = 1;
 	ArrayList<Product> top5 = (ArrayList<Product>) request.getAttribute("top5Artikel");
+	ArrayList<Product> maenneranteil = (ArrayList<Product>) request.getAttribute("maenneranteil");
+	ArrayList<Product> frauenanteil = (ArrayList<Product>) request.getAttribute("frauenanteil");
+	ArrayList<Product> kinderanteil = (ArrayList<Product>) request.getAttribute("kinderanteil");
+	ArrayList<Product> berufsanteil = (ArrayList<Product>) request.getAttribute("berufsanteil");
+	String zusammengekaufteWaren = (String)request.getAttribute("zusammengekaufteWaren");
 %>
 
 <!DOCTYPE html>
@@ -80,8 +85,8 @@
 					</div>
 					<div class="card-block">
 						
-					</div>
-					<div class="chart-container" style="position: relative; width:40vw">
+
+					<div class="chart-container" style="position: relative; width:55vw">
 						<canvas id="myChart"></canvas>
 					</div>
 					<script>
@@ -127,12 +132,63 @@
 					});
 					</script>
 					<br/>
+					</div>
 				</div>
-			</div>
+				<br/><br/>
+				<div class="card">
+					<div class="card-header">
+						<strong>Zusammengekaufte Artikel</strong> <small> </small>
+					</div>
+					<div class="card-block">
+						<div style="padding: 20px;">
+							<%= zusammengekaufteWaren %>
+						</div>
+					</div>
+				</div>
+				<br/><br/>
+				<div class="card">
+					<div class="card-header">
+						<strong>Geschlechter Anteil</strong> <small> </small>
+					</div>
+					<div class="card-block">
+						<div style="padding: 20px;">
+							Männeranteil
+							<% for (Product anteil : maenneranteil) { %>
+		    	        		<%= anteil.amount() %>
+		    	        	<% } %>
+		    	        	<br/>
+		    	        	Frauenanteil
+							<% for (Product anteil : frauenanteil) { %>
+		    	        		<%= anteil.amount() %>
+		    	        	<% } %>		    	        	
+						</div>
+					</div>
+				</div>
+				<br/><br/>
+				<div class="card">
+					<div class="card-header">
+						<strong>Weitere Information zu den Personen</strong> <small> </small>
+					</div>
+					<div class="card-block">
+						<div style="padding: 20px;">
+							Besitzen Kinder
+							<% for (Product anteil : kinderanteil) { %>
+		    	        		<%= anteil.amount() %>
+		    	        	<% } %>
+		    	        	<br/>	  
+		    	        	Berufstätig
+							<% for (Product anteil : berufsanteil) { %>
+		    	        		<%= anteil.amount() %>
+		    	        	<% } %>  	
+		    	        	<br/>        	
+						</div>
+					</div>
+				</div>
 		</div>
 		<br/>
 		<br/>
 
+	</div>
 	</div>
 		<br/>
 		<br/>

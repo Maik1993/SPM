@@ -25,6 +25,20 @@ public class ProductList {
 			this.productList.add(productToAdd);
 		}
 	}
+	
+	public void add2(Product productToAdd) {
+		boolean alreadyInserted = false;
+		for (Product product : this.productList) {
+			if (product.equals(productToAdd)) {
+				product.increaseBy(productToAdd.amount());
+				alreadyInserted = true;
+			}
+		}
+
+		if (!alreadyInserted) {
+			this.productList.add(productToAdd);
+		}
+	}
 
 	public int size() {
 		return this.productList.size();
@@ -50,6 +64,16 @@ public class ProductList {
 		}
 
 		return topProductsSorted;
+	}
+	
+	public ArrayList<Product> getSpalteErgebnis() {
+		this.sortProducts();
+		ArrayList<Product> spaltesortedErgebnis = new ArrayList<Product>();
+		for (int i = 0; i < this.productList.size(); i++) {
+			spaltesortedErgebnis.add(this.productList.get(i));
+		}
+
+		return spaltesortedErgebnis;
 	}
 
 }

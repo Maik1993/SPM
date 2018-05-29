@@ -1,5 +1,7 @@
 package servlet;
 
+import java.awt.List;
+
 /* Beispielprogramm, um WeKa (Apriori) in eclipse zu verwenden.
 
  Die Rohdaten liegen im CSV-Format vor. WeKa ben�tigt das arff-Format.
@@ -28,7 +30,7 @@ public class Weka {
 	public String roh;
 	private final int PRODUCT_START = 7;
 
-	public void excecuteWeka(String filepath, String fileNameWithCode, String arffFilenameWithCode,
+	public String excecuteWeka(String filepath, String fileNameWithCode, String arffFilenameWithCode,
 			String txtFilenameWithCode) throws Exception {
 		// Eigenen Dateipfad eintragen, nicht meinen nehmen ;-)
 		String path = filepath;
@@ -86,14 +88,24 @@ public class Weka {
 		model.buildAssociations(alleDaten);
 		warenModel.buildAssociations(nurWaren);
 
-		System.out.println(model);
-		System.out.println(warenModel);
+		//System.out.println(model);
+		//System.out.println(warenModel);
 
 		// Apriori-Auswertung in Datei speichern
 		Writer fp1 = new FileWriter(dateiMod);
 		fp1.write(model.toString());
 		fp1.close();
-
+		
+		//-------------------------
+		String zusammengekaufteWaren = warenModel.toString();
+		String searchString = "1.";
+		if (zusammengekaufteWaren.contains(searchString)) {
+		  zusammengekaufteWaren = zusammengekaufteWaren.substring((int)zusammengekaufteWaren.indexOf(searchString), zusammengekaufteWaren.length());
+		  zusammengekaufteWaren = zusammengekaufteWaren.replaceAll("<conf.{1,}conv:\\(\\d{1,}\\.\\d{1,}\\)", "<br/>");
+		}
+		
+		return zusammengekaufteWaren;
+		
 	}
 
 	public void setRoh(String roh) {
@@ -106,18 +118,11 @@ public class Weka {
 
 	public ArrayList<Product> getTop5Artikel() throws Exception {
 		CSVLoader loader = this.getInitializedLoader();
-		// -----------------------------------------
 		Instances allData = loader.getDataSet();
 		ProductList productList = this.generateProductList(allData);
 		int topListLength = 5;
 		ArrayList<Product> top5 = productList.getTopProducts(topListLength);
 		
-//		int place = 1;
-//		System.out.println("Top " + topListLength);
-//		for (Product topProducts : top5) {
-//			System.out.println("Platz " + place + " " + topProducts.title() + ": " + topProducts.amount());
-//			place++;
-//		}
 		return top5;
 	}
 
@@ -140,6 +145,17 @@ public class Weka {
 			System.err.println(ex.getMessage());
 		}
 		return loader;
+	}
+	
+	public ArrayList<Product> getEineSpalte(int spaltenNummer, String anotherInformation) throws Exception {
+		CSVLoader loader = this.getInitializedLoader();
+		Instances allData = loader.getDataSet();
+		
+		ProductList spalte = this.generateSpalte(allData, spaltenNummer, anotherInformation);
+		ArrayList<Product> spaltenanteil = spalte.getSpalteErgebnis();
+		
+		return spaltenanteil;
+		
 	}
 
 	private ProductList generateProductList(Instances allData) {
@@ -166,6 +182,49 @@ public class Weka {
 				Product productToAdd = new Product(title, Integer.parseInt(items[productCounterIndex]));
 				productList.add(productToAdd);
 			}
+		}
+
+		return productList;
+	}
+	
+	private ProductList generateSpalte(Instances allData, int spaltenNummer, String anotherInformation) {
+		ArrayList<String> titleList = new ArrayList<String>();
+		String headerRow = allData.get(0).toString();
+		String[] headerRowAsArray = headerRow.split(",");
+			String title = headerRowAsArray[spaltenNummer];
+			titleList.add(title);
+
+		ProductList productList = new ProductList();
+
+		for (int i = 1; i < allData.size(); i++)
+		{
+			String ganzeZeile = allData.get(i).toString();
+			String[] items = ganzeZeile.split(",");
+			
+			//Besondere Informationen in den Datensaetzen anstatt 0 und 1
+			if(anotherInformation.equals("m")) {
+				if(items[spaltenNummer].equals("m")) {
+					items[spaltenNummer] = "1";
+				} else {
+					items[spaltenNummer] = "0";
+				} 
+			} else if(anotherInformation.equals("w")) {
+				if(items[spaltenNummer].equals("w")) {
+					items[spaltenNummer] = "1";
+				} else {
+					items[spaltenNummer] = "0";
+				} 
+			} else if((anotherInformation.equals("kinder")) || (anotherInformation.equals("beruf"))) {
+				if(items[spaltenNummer].equals("ja")) {
+					items[spaltenNummer] = "1";
+				} else {
+					items[spaltenNummer] = "0";
+				} 
+			}
+			
+					Product productToAdd = new Product(title, Integer.parseInt(items[spaltenNummer]));
+					productList.add(productToAdd);
+			
 		}
 
 		return productList;
