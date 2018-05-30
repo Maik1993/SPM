@@ -25,6 +25,9 @@ import weka.core.converters.ConverterUtils.DataSource;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.NumericCleaner;
 import weka.filters.unsupervised.attribute.NumericToNominal;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.Iterator; 
 
 public class Weka {
 	public String roh;
@@ -95,6 +98,8 @@ public class Weka {
 		Writer fp1 = new FileWriter(dateiMod);
 		fp1.write(model.toString());
 		fp1.close();
+		
+		loeschen(filepath);
 		
 		//-------------------------
 		String zusammengekaufteWaren = warenModel.toString();
@@ -366,5 +371,91 @@ public class Weka {
 		return anzahlDatensaetze;
 		
 	}
+	
+	
 
-}
+	public void loeschen(String filepath) {
+
+
+	//Das auszulesende Verzeichnis
+	File verzeichnis = new File (filepath);
+
+	//Inhalt von "verzeichnis" in das Array "dateien" einlesen
+	String[] dateinamen = verzeichnis.list();
+
+	int ii =0;
+
+	String link=filepath;
+	
+	System.out.println("Link:" +filepath);
+
+
+	Set<String> liste = new TreeSet();
+
+
+	for(String i: dateinamen)
+	{
+
+		//System.out.println(i);
+		if(i.endsWith(".txt"))
+		{
+			liste.add(i);
+		}
+	}
+	
+
+
+	System.out.println("Listeneinträge:" +liste.size());
+
+	ArrayList<String> eraser = new ArrayList<String>();
+
+	do {
+	if(liste.size() >5)
+	{
+		ii++;
+		Iterator<String> it = liste.iterator();
+		eraser.add(it.next());  //erstes element des treesets abspeichern
+		liste.remove(eraser.get((ii-1)));
+	}
+
+	}while(liste.size()>5);
+
+
+	//Dateien löschen
+
+	String concat="";
+	boolean check=false;
+	for(ii=0; ii<eraser.size(); ii++)
+	{
+	concat=link;
+	//concat+="";
+	concat+=eraser.get(ii);
+
+	//	System.out.println("Item:" +concat);
+	
+	
+	//System.out.println(concat);
+	File erasable = new File(concat);
+	check= erasable.delete();
+
+
+	if(!check) {
+		System.out.println("Alte Datei gelöscht");
+		
+
+	}
+	else
+	{
+		System.out.println("Die " +(eraser.size()-ii)+ ". Datei konnte nicht gelöscht werden");
+	}
+
+	}
+
+	}
+
+
+	}
+	
+
+
+
