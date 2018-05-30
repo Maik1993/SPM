@@ -1,7 +1,7 @@
 <!-- https://stackoverflow.com/questions/19525608/how-to-include-loading-gif-while-file-upload-and-insert-to-database-is-in-progre -->
 <%@ page import="servlet.Strategienliste, java.io.IOException" %>
 <% 	
- /*	String username = (String) session.getAttribute("name"); 
+ 	String username = (String) session.getAttribute("name"); 
  	
 	if(username == null){
 		response.sendRedirect("login.jsp");
@@ -14,7 +14,7 @@
 		wrongData = (boolean) session.getAttribute("wrongData");
 	} catch (NullPointerException e) {
 
-	}*/
+	}
 	
 	Strategienliste sl = new Strategienliste();
 %>
