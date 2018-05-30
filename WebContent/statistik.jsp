@@ -1,4 +1,5 @@
 <!-- Hilfeseite http://www.chartjs.org/docs/latest/charts/doughnut.html -->
+<%@page import="java.util.Collection"%>
 <%@page import="java.util.ArrayList" %>
 <%@page import="servlet.Product" %>
 <% 	
@@ -20,6 +21,16 @@
 	ArrayList<Product> alteranteil = (ArrayList<Product>) request.getAttribute("alteranteil");
 	ArrayList<Product> uhrzeitanteil = (ArrayList<Product>) request.getAttribute("uhrzeit");
 	String zusammengekaufteWaren = (String)request.getAttribute("zusammengekaufteWaren");
+	
+	//getMaxWochentag
+	int counter = 0; 
+	Product einkaufstag = new Product("", 0);
+  	 for (Product anteil : einkaufstageanteil) { 
+  			if(anteil.amount() > counter) {
+  				einkaufstag.setAmount(anteil.amount());
+  				einkaufstag.setTitle(anteil.title());
+  			}
+     } 
 %>
 
 <!DOCTYPE html>
@@ -61,6 +72,8 @@
 				</li>
 				<li class="nav-item"><a class="nav-link" href="statistik.jsp"><span class="fa fa-bar-chart"></span> Statistiken</a>
 				</li>
+				<li class="nav-item"><a class="nav-link" href="DropDown.jsp"><span class="fa fa-file"></span> Marketing</a>
+				</li>
 			</ul>
 			<form action="Logout" method="POST">
 			<span class="navbar-text"> 		
@@ -84,6 +97,44 @@
 
 		<div class="row">
 			<div class="col-md-12">
+					<!-- Button to Open the Modal -->
+				  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+				    Marketing Maßnahmen
+				  </button>
+				  <!-- The Modal -->
+				  <div class="modal fade" id="myModal">
+				    <div class="modal-dialog">
+				      <div class="modal-content">
+				      
+				        <!-- Modal Header -->
+				        <div class="modal-header">
+				          <h4 class="modal-title">Marketing Maßnahmen</h4>
+				          <button type="button" class="close" data-dismiss="modal">&times;</button>
+				        </div>
+				        
+				        <!-- Modal body -->
+				        <div class="modal-body">
+				          <div class="empfehlung">
+				          	<span style="font-weight: bold;">Empfehlung: </span> 
+				          	<%= top5.get(0).title() %> mit <%= top5.get(1).title() %> sollten nebeneinander in Laden platziert werden 
+				          </div>
+				          <br/>
+				          <div class="empfehlung">
+				          	<span style="font-weight: bold;">Empfehlung: </span>
+					        Am <%= einkaufstag.title() %> sollten die meisten Aktionen statt finden
+				          </div>
+				        </div>
+				        
+				        <!-- Modal footer -->
+				        <div class="modal-footer">
+				          <button type="button" class="btn btn-danger" data-dismiss="modal">Schließen</button>
+				        </div>
+				        
+				      </div>
+				    </div>
+				  </div>
+				  
+				<br/><br/>
 				<div class="card">
 					<div class="card-header">
 						<strong>Top 5 Artikel</strong> <small> </small>

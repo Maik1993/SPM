@@ -17,6 +17,14 @@ public class Product implements Comparable<Product> {
 		return this.amount;
 	}
 
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	public void increaseBy(int amountToIncrease) {
 		this.amount += amountToIncrease;
 	}

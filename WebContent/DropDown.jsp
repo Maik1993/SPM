@@ -77,6 +77,8 @@
 				</li>
 				<li class="nav-item"><a class="nav-link" href="statistik.jsp"><span class="fa fa-bar-chart"></span> Statistiken</a>
 				</li>
+				<li class="nav-item"><a class="nav-link" href="DropDown.jsp"><span class="fa fa-file"></span> Marketing</a>
+				</li>
 			</ul>
 			<form action="Logout" method="POST">
 			<span class="navbar-text"> 		

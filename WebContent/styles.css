@@ -85,4 +85,10 @@ footer p {
 	width: 150px;
 }
 
+.empfehlung {
+	border: 1px solid blue;
+	background-color: lightblue;
+	color: blue;
+	padding: 10px;
+}
 
