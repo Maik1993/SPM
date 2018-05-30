@@ -220,10 +220,136 @@ public class Weka {
 				} else {
 					items[spaltenNummer] = "0";
 				} 
+			} else if(anotherInformation.equals("partner")) {
+					if(items[spaltenNummer].equals("Partnerschaft")) {
+						items[spaltenNummer] = "1";
+					} else {
+						items[spaltenNummer] = "0";
+					} 
+			} else if(anotherInformation.contains("tage")) {
+				
+				if(anotherInformation.contains("Montag")) {
+					title = "Montag";
+					if(items[spaltenNummer].equals("Montag")) {
+						items[spaltenNummer] = "1";
+					}else {
+						items[spaltenNummer] = "0";
+					}
+				} else if(anotherInformation.contains("Dienstag")) {
+					title = "Dienstag";
+					if(items[spaltenNummer].equals("Dienstag")) {
+						items[spaltenNummer] = "1";
+					}else {
+						items[spaltenNummer] = "0";
+					}
+				} else if(anotherInformation.contains("Mittwoch")) {
+					title = "Mittwoch";
+					if(items[spaltenNummer].equals("Mittwoch")) {
+						items[spaltenNummer] = "1";
+					}else {
+						items[spaltenNummer] = "0";
+					}
+				} else if(anotherInformation.contains("Donnerstag")) {
+					title = "Donnerstag";
+					if(items[spaltenNummer].equals("Donnerstag")) {
+						items[spaltenNummer] = "1";
+					}else {
+						items[spaltenNummer] = "0";
+					}
+				} else if(anotherInformation.contains("Freitag")) {
+					title = "Freitag";
+					if(items[spaltenNummer].equals("Freitag")) {
+						items[spaltenNummer] = "1";
+					}else {
+						items[spaltenNummer] = "0";
+					}
+				} else if(anotherInformation.contains("Samstag")) {
+					title = "Samstag";
+					if(items[spaltenNummer].equals("Samstag")) {
+						items[spaltenNummer] = "1";
+					}else {
+						items[spaltenNummer] = "0";
+					}
+				}
+			} else if(anotherInformation.contains("alter")) {
+				if(anotherInformation.contains("Jung")) {
+					title = "18-30";
+					if(items[spaltenNummer].equals("18-30")) {
+						items[spaltenNummer] = "1";
+					}else {
+						items[spaltenNummer] = "0";
+					}
+				} else if(anotherInformation.contains("Mittel")) {
+					title = "31-40";
+					if(items[spaltenNummer].equals("31-40")) {
+						items[spaltenNummer] = "1";
+					}else {
+						items[spaltenNummer] = "0";
+					}
+				} else if(anotherInformation.contains("Alt")) {
+					title = "41-50";
+					if(items[spaltenNummer].equals("41-50")) {
+						items[spaltenNummer] = "1";
+					}else {
+						items[spaltenNummer] = "0";
+					}
+				} else if(anotherInformation.contains("Steinalt")) {
+					title = "51-60";
+					if(items[spaltenNummer].equals("51-60")) {
+						items[spaltenNummer] = "1";
+					}else {
+						items[spaltenNummer] = "0";
+					}
+				} else if(anotherInformation.contains("ZuAlt")) {
+					title = ">60";
+					if(items[spaltenNummer].equals(">60")) {
+						items[spaltenNummer] = "1";
+					}else {
+						items[spaltenNummer] = "0";
+					}
+				}
+			} else if(anotherInformation.contains("uhrzeit")) {
+				if(anotherInformation.contains("Morgen")) {
+					title = "<10 Uhr";
+					if(items[spaltenNummer].contains("<10 Uhr")) {
+						items[spaltenNummer] = "1";
+					}else {
+						items[spaltenNummer] = "0";
+					}
+				} else if(anotherInformation.contains("Mittag")) {
+					title = "10-12 Uhr";
+					if(items[spaltenNummer].contains("10-12 Uhr")) {
+						items[spaltenNummer] = "1";
+					}else {
+						items[spaltenNummer] = "0";
+					}
+				} else if(anotherInformation.contains("Nachmittag")) {
+					title = "12-14 Uhr";
+					if(items[spaltenNummer].contains("12-14 Uhr")) {
+						items[spaltenNummer] = "1";
+					}else {
+						items[spaltenNummer] = "0";
+					}
+				}else if(anotherInformation.contains("Abend")) {
+					title = "14-17 Uhr";
+					if(items[spaltenNummer].contains("14-17 Uhr")) {
+						items[spaltenNummer] = "1";
+					}else {
+						items[spaltenNummer] = "0";
+					}
+				}else if(anotherInformation.contains("Nacht")) {
+					title = ">17 Uhr";
+					if(items[spaltenNummer].contains(">17 Uhr")) {
+						items[spaltenNummer] = "1";
+					}else {
+						items[spaltenNummer] = "0";
+					}
+				}
 			}
 			
-					Product productToAdd = new Product(title, Integer.parseInt(items[spaltenNummer]));
-					productList.add(productToAdd);
+			Product productToAdd = new Product(title, Integer.parseInt(items[spaltenNummer]));
+			productList.add(productToAdd);
+			
 			
 		}
 

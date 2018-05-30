@@ -97,6 +97,33 @@ public class FileUploader extends HttpServlet {
 				ArrayList<Product> frauenanteil = new ArrayList<Product>();
 				ArrayList<Product> kinderanteil = new ArrayList<Product>();
 				ArrayList<Product> berufsanteil = new ArrayList<Product>();
+				ArrayList<Product> partneranteil = new ArrayList<Product>();
+				//Tageanteil -----------
+				ArrayList<Product> montaganteil = new ArrayList<Product>();
+				ArrayList<Product> dienstaganteil = new ArrayList<Product>();
+				ArrayList<Product> mittwochanteil = new ArrayList<Product>();
+				ArrayList<Product> donnerstaganteil = new ArrayList<Product>();
+				ArrayList<Product> freitaganteil = new ArrayList<Product>();
+				ArrayList<Product> samstaganteil = new ArrayList<Product>();
+				ArrayList<Product> einkaufstaganteil = new ArrayList<Product>();
+				//------------ 
+				//Alteranteil-----
+				ArrayList<Product> alterjunganteil = new ArrayList<Product>();
+				ArrayList<Product> altermittelanteil = new ArrayList<Product>();
+				ArrayList<Product> alteraltanteil = new ArrayList<Product>();
+				ArrayList<Product> altersteinanteil = new ArrayList<Product>();
+				ArrayList<Product> alterzualtanteil = new ArrayList<Product>();
+				ArrayList<Product> alteranteil = new ArrayList<Product>();
+				//----------
+				//Uhrzeitanteil-----
+				ArrayList<Product> morgensnteil = new ArrayList<Product>();
+				ArrayList<Product> mittagsanteil = new ArrayList<Product>();
+				ArrayList<Product> nachmittagsanteil = new ArrayList<Product>();
+				ArrayList<Product> abendanteil = new ArrayList<Product>();
+				ArrayList<Product> nachtanteil = new ArrayList<Product>();
+				ArrayList<Product> uhrzeitanteil = new ArrayList<Product>();
+				//----------
+				
 				int anzahlDatensatze = 0;
 				String zusammengekaufteWaren = "";
 				try {
@@ -107,6 +134,51 @@ public class FileUploader extends HttpServlet {
 					frauenanteil = weka.getEineSpalte(0, "w");
 					kinderanteil = weka.getEineSpalte(2, "kinder");
 					berufsanteil = weka.getEineSpalte(4, "beruf");
+					partneranteil = weka.getEineSpalte(3, "partner");
+					
+					//Tageanteil
+					montaganteil = weka.getEineSpalte(5, "tageMontag");
+					dienstaganteil = weka.getEineSpalte(5, "tageDienstag");
+					mittwochanteil = weka.getEineSpalte(5, "tageMittwoch");
+					donnerstaganteil = weka.getEineSpalte(5, "tageDonnerstag");
+					freitaganteil = weka.getEineSpalte(5, "tageFreitag");
+					samstaganteil = weka.getEineSpalte(5, "tageSamstag");
+					
+					einkaufstaganteil.addAll(montaganteil);
+					einkaufstaganteil.addAll(dienstaganteil);
+					einkaufstaganteil.addAll(mittwochanteil);
+					einkaufstaganteil.addAll(donnerstaganteil);
+					einkaufstaganteil.addAll(freitaganteil);
+					einkaufstaganteil.addAll(samstaganteil);
+					//---------------
+					
+					//Alteranteil-----
+					alterjunganteil = weka.getEineSpalte(1, "alterJung");
+					altermittelanteil = weka.getEineSpalte(1, "alterMittel");
+					alteraltanteil = weka.getEineSpalte(1, "alterAlt");
+					altersteinanteil = weka.getEineSpalte(1, "alterSteinalt");
+					alterzualtanteil = weka.getEineSpalte(1, "alterZuAlt");
+					
+					alteranteil.addAll(alterjunganteil);
+					alteranteil.addAll(altermittelanteil);
+					alteranteil.addAll(alteraltanteil);
+					alteranteil.addAll(altersteinanteil);
+					alteranteil.addAll(alterzualtanteil);
+					//----------
+					
+					//Uhrzeitanteil-----
+					morgensnteil = weka.getEineSpalte(6, "uhrzeitMorgen");
+					mittagsanteil = weka.getEineSpalte(6, "uhrzeitMittag");
+					nachmittagsanteil = weka.getEineSpalte(6, "uhrzeitNachmittag");
+					abendanteil = weka.getEineSpalte(6, "uhrzeitAbend");
+					nachtanteil = weka.getEineSpalte(6, "uhrzeitNacht");
+					
+					uhrzeitanteil.addAll(morgensnteil);
+					uhrzeitanteil.addAll(mittagsanteil);
+					uhrzeitanteil.addAll(nachmittagsanteil);
+					uhrzeitanteil.addAll(abendanteil);
+					uhrzeitanteil.addAll(nachtanteil);
+					//----------
 					
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -125,6 +197,11 @@ public class FileUploader extends HttpServlet {
 				request.setAttribute("frauenanteil", frauenanteil);
 				request.setAttribute("kinderanteil", kinderanteil);
 				request.setAttribute("berufsanteil", berufsanteil);
+				request.setAttribute("einkaufsanteil", einkaufstaganteil);
+				request.setAttribute("partneranteil", partneranteil);
+				request.setAttribute("alteranteil", alteranteil);
+				request.setAttribute("uhrzeit", uhrzeitanteil);
+				
 				RequestDispatcher req = request.getRequestDispatcher("statistik.jsp");
 				session.setAttribute("wrongData", false);
 				session.setAttribute("noData", false);

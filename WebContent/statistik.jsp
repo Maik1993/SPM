@@ -15,6 +15,10 @@
 	ArrayList<Product> frauenanteil = (ArrayList<Product>) request.getAttribute("frauenanteil");
 	ArrayList<Product> kinderanteil = (ArrayList<Product>) request.getAttribute("kinderanteil");
 	ArrayList<Product> berufsanteil = (ArrayList<Product>) request.getAttribute("berufsanteil");
+	ArrayList<Product> einkaufstageanteil = (ArrayList<Product>) request.getAttribute("einkaufsanteil");
+	ArrayList<Product> partneranteil = (ArrayList<Product>) request.getAttribute("partneranteil");
+	ArrayList<Product> alteranteil = (ArrayList<Product>) request.getAttribute("alteranteil");
+	ArrayList<Product> uhrzeitanteil = (ArrayList<Product>) request.getAttribute("uhrzeit");
 	String zusammengekaufteWaren = (String)request.getAttribute("zusammengekaufteWaren");
 %>
 
@@ -85,8 +89,6 @@
 						<strong>Top 5 Artikel</strong> <small> </small>
 					</div>
 					<div class="card-block">
-						
-
 					<div class="chart-container" style="position: relative; width:55vw">
 						<canvas id="myChart"></canvas>
 					</div>
@@ -136,6 +138,78 @@
 					</div>
 				</div>
 				<br/><br/>
+					<div class="card">
+					<div class="card-header">
+						<strong>Einkaufstage</strong> <small> </small>
+					</div>
+					<div class="card-block">
+					<div class="chart-container" style="position: relative; width:55vw">
+						<canvas id="einkaufstage"></canvas>
+					</div>
+					<script>
+					var ctx = document.getElementById("einkaufstage");
+					var data = {
+					        labels: [
+					        	<% for (Product anteil : einkaufstageanteil) { %>
+					        		"<%= anteil.title() %>",
+					        	<% } %>
+					        	],
+					        datasets: [{
+					            label: "Einkaufstage",
+					            borderColor: 'rgb(255, 99, 132)',
+					            data: [
+					        	<% for (Product anteil : einkaufstageanteil) { %>
+					        		"<%= anteil.amount() %>",
+					        	<% } %>
+					        	],
+					        }]
+					    }
+
+					var myChart = new Chart(ctx, {
+					    type: 'line',
+					    data : data
+					});
+					</script>
+					<br/>
+					</div>
+				</div>
+				<br/><br/>
+					<div class="card">
+					<div class="card-header">
+						<strong>Uhrzeit</strong> <small> </small>
+					</div>
+					<div class="card-block">
+					<div class="chart-container" style="position: relative; width:55vw">
+						<canvas id="uhrzeit"></canvas>
+					</div>
+					<script>
+					var ctx = document.getElementById("uhrzeit");
+					var data = {
+					        labels: [
+					        	<% for (Product anteil : uhrzeitanteil) { %>
+					        		"<%= anteil.title() %>",
+					        	<% } %>
+					        	],
+					        datasets: [{
+					            label: "Uhrzeiten",
+					            borderColor: 'rgb(255, 99, 132)',
+					            data: [
+					        	<% for (Product anteil : uhrzeitanteil) { %>
+					        		"<%= anteil.amount() %>",
+					        	<% } %>
+					        	],
+					        }]
+					    }
+
+					var myChart = new Chart(ctx, {
+					    type: 'line',
+					    data : data
+					});
+					</script>
+					<br/>
+					</div>
+				</div>
+				<br/><br/>
 				<div class="card">
 					<div class="card-header">
 						<strong>Zusammengekaufte Artikel</strong> <small> </small>
@@ -166,6 +240,56 @@
 					</div>
 				</div>
 				<br/><br/>
+					<div class="card">
+					<div class="card-header">
+						<strong>Durchschnittliches Alter</strong> <small> </small>
+					</div>
+					<div class="card-block">
+					<div class="chart-container" style="position: relative; width:55vw">
+						<canvas id="alter"></canvas>
+					</div>
+					<script>
+					var ctx = document.getElementById("alter");
+					var data = {
+					        labels: [
+					        	<% for (Product anteil : alteranteil) { %>
+					        		"<%= anteil.title() %>",
+					        	<% } %>
+					        	],
+					        datasets: [{
+					            label: "Alteranteil",
+					            data: [
+					        	<% for (Product anteil : alteranteil) { %>
+					        		"<%= anteil.amount() %>",
+					        	<% } %>
+					        	],
+					            backgroundColor: [
+					                'rgba(255, 99, 132, 0.2)',
+					                'rgba(54, 162, 235, 0.2)',
+					                'rgba(255, 206, 86, 0.2)',
+					                'rgba(75, 192, 192, 0.2)',
+					                'rgba(153, 102, 255, 0.2)'
+					            ],
+					            borderColor: [
+					                'rgba(255,99,132,1)',
+					                'rgba(54, 162, 235, 1)',
+					                'rgba(255, 206, 86, 1)',
+					                'rgba(75, 192, 192, 1)',
+					                'rgba(153, 102, 255, 1)'
+					            ],
+					            borderWidth: 1
+					        }]
+					    }
+
+					var myChart = new Chart(ctx, {
+					    type: 'bar',
+					    data : data
+					});
+					</script>
+					<br/>
+					</div>
+				</div>
+				<br/><br/>
 				<div class="card">
 					<div class="card-header">
 						<strong>Weitere Information zu den Personen</strong> <small> </small>
@@ -181,7 +305,12 @@
 							<% for (Product anteil : berufsanteil) { %>
 		    	        		<%= anteil.amount() %>
 		    	        	<% } %>  	
-		    	        	<br/>        	
+		    	        	<br/> 	  
+		    	        	Sind in einer Partnerschaft
+							<% for (Product anteil : partneranteil) { %>
+		    	        		<%= anteil.amount() %>
+		    	        	<% } %>
+		    	        	<br/>
 						</div>
 					</div>
 				</div>
