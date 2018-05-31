@@ -114,7 +114,7 @@
 							<% } %>
 							<% if(wrongData){ %>
 							<br/>
-							<p class="text-danger">Falscher Dateityp!</p>
+							<p class="text-danger">Es ist ein Fehler aufgetreten!</p>
 						
 							<% } %>
 								<div id="analyse_button">

@@ -198,7 +198,6 @@ public class Weka {
 		String[] headerRowAsArray = headerRow.split(",");
 			String title = headerRowAsArray[spaltenNummer];
 			titleList.add(title);
-
 		ProductList productList = new ProductList();
 
 		for (int i = 1; i < allData.size(); i++)
