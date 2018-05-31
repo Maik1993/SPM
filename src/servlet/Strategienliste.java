@@ -41,7 +41,7 @@ public class Strategienliste {
 			try {
 				save();
 			} catch (IOException e) {
-				System.out.println("Fehler");
+				System.out.println("Fehler beim Speichern");
 				e.printStackTrace();
 			}
 		}
@@ -69,5 +69,15 @@ public class Strategienliste {
 		}
 		br.close();
 		return ladeliste;
+	}
+	
+	public void delete() {
+		list = new ArrayList<String>();
+		try {
+			save();
+		} catch (IOException e) {
+			System.out.println("Fehler beim löschen!");
+			e.printStackTrace();
+		}
 	}
 }

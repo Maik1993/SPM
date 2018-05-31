@@ -140,6 +140,8 @@
 			<div class="container">
 			<div class="row">
 				<div class="col-md-9">
+				<% java.util.Date d = new java.util.Date(); %>
+					<p><%=d %></p>
 					<p>&copy; Just Do IT</p>
 					<p>David Boes, Christopher Heyn, Justine L&uuml;ken, Lars Lipport, Maik Habben, Ina Krefting</p>
 				</div>
