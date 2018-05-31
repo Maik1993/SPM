@@ -396,8 +396,9 @@ public class Weka {
 	String link=filepath;
 	
 	System.out.println("Link:" +filepath);
-
-	//Treeset erzeugen um die txt Dateien sortiert nach ihrem Timestamp abzuspeichern
+	/**
+	 * Treeset erzeugen um die txt Dateien sortiert nach ihrem Timestamp abzuspeichern
+	 */
 	Set<String> liste = new TreeSet();
 
 	//Aus allen Dateien die Txt Dateien herausfiltern
@@ -416,8 +417,9 @@ public class Weka {
 	//System.out.println("Listeneinträge:" +liste.size());
 	//ArrayList erzeugt
 	ArrayList<String> eraser = new ArrayList<String>();
-
-	//ArrayList mit allen überschüssigen Txt Dateien befüllen
+/**
+ * ArrayList mit allen überschüssigen Txt Dateien befüllen
+ */
 	do {
 	if(liste.size() >5)
 	{
@@ -429,9 +431,11 @@ public class Weka {
 
 	}while(liste.size()>5);
 
-
-	//Dateien löschen
-	//Dateien in einer For-Schleife aufrufen und nach und nach löschen
+/**
+ * Dateien löschen
+ *	Dateien in einer For-Schleife aufrufen und nach und nach löschen
+ */
+	
 	String concat="";
 	boolean check=false;
 	for(ii=0; ii<eraser.size(); ii++)
@@ -447,14 +451,21 @@ public class Weka {
 	File erasable = new File(concat);
 	check= erasable.delete();
 
-	//Wenn Erfolgreich oder nicht, entsprechende Ausgabe
+	/*
+	 * Wenn Erfolgreich oder nicht, entsprechende Ausgabe
+	 */
+	
 	if(!check) {
 		System.out.println("Alte Datei gelöscht");
 		
 
 	}
 	else
-	{	//Die höchste Nummer entspricht dem ersten Eintrag in der ArrayList und somit der Txt Datei mit dem ältesten Timestamp
+	{	
+		/**
+		 * Die höchste Nummer entspricht dem ersten Eintrag in der ArrayList und somit der Txt Datei mit dem ältesten Timestamp
+		 */
+		
 		System.out.println("Die " +(eraser.size()-ii)+ ". Datei konnte nicht gelöscht werden");
 	}
 
